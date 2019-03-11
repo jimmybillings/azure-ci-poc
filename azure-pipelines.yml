@@ -23,7 +23,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/dist/azure-ci-poc'
+    SourceFolder: '$(System.DefaultWorkingDirectory)\\dist\\azure-ci-poc'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: AzureFileCopy@2
