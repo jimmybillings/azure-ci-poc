@@ -21,6 +21,15 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
+- task: AzureFileCopy@2
+  displayName: 'AzureBlob File Copy'
+  inputs:
+    SourcePath: '$(System.DefaultWorkingDirectory)/dist/azure-ci-poc'
+    azureSubscription: 'QA Connection'
+    Destination: AzureBlob
+    storage: azurecipoc
+    ContainerName: '$web'
+
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)/dist/azure-ci-poc'
