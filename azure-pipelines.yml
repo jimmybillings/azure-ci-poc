@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'Ubuntu-16.04'
 
 steps:
 - task: NodeTool@0
@@ -23,17 +23,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)\\dist\\azure-ci-poc'
+    SourceFolder: '$(System.DefaultWorkingDirectory)/dist/azure-ci-poc'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: AzureFileCopy@2
-  displayName: 'AzureBlob File Copy'
-  inputs:
-    SourcePath: '$(Build.ArtifactStagingDirectory)'
-    azureSubscription: 'QA Connection'
-    Destination: AzureBlob
-    storage: azurecipoc
-    ContainerName: '$web'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
